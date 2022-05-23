@@ -1,0 +1,231 @@
+/* ================================= 1) GENERAL CSS (HIGH LEVEL) ================================= */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+.box, .chordbutton, #play {
+  font-family: 'Roboto', sans-serif;
+}
+
+#play {
+  font-size: 1em;
+}
+
+html, body {
+  height: 98%;
+  /*width: 100%;*/
+  background-image: linear-gradient(to right top, #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #8aa7ec, #79b3f4, #69bff8, #52cffe, #41dfff, #46eefa, #5ffbf1);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  overflow: hidden;
+}
+
+.container {
+  height: 98%;
+  width: 98%;
+  margin: 1%;
+}
+
+.container > * {
+  transition: background-color 0.3s;
+}
+
+.sidebar, .article {
+  padding: 1rem;
+  border-radius: 1rem;
+}
+
+.sidebar:hover, .article:hover {
+  background-color: #ffffff30;
+}
+
+.footer {
+  position: absolute;
+  width: 100%;
+  height: 28%;
+  left: 0%;
+  bottom: 0%;*/
+}
+
+/* ---------- Grid Layout for Wide Viewports ---------- */
+@media screen and (min-width: 40em) {
+
+  .container {
+    display: grid;
+    grid-template-columns: 23% auto 23%;
+    grid-gap: 2% 2%;
+    grid-template-rows: 28% auto 28%;
+  }
+
+  .header {
+    grid-column: 1 / span 3;
+  }
+
+  .sidebar {
+    grid-row-end: span 1;
+  }
+
+  .footer {
+    grid-column: 1 / span 3;
+  }
+}
+
+/* ---------- Grid Layout for Narrow Viewports ---------- */
+@media screen and (max-width: 40em) {
+
+  .container {
+    display: flexbox;
+    flex-direction: column;
+  }
+
+  .container > * {
+    padding: 1rem;
+    border-radius: 1rem;
+    margin: 0 0 2% 0;
+  }
+}
+
+/* ==================== 1) Progression Boxes ==================== */
+span {
+  font-size:0.4em
+}
+
+.progression {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.box {
+  --width: 8vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: var(--width);
+  width: var(--width);
+  margin: 4rem 0.4rem 0rem 0.4rem;
+  border-radius: 0.2em;
+  position: relative;
+  font-size: 2.5rem;
+  color: white;
+  text-shadow: 2px 1px rgb(0 0 0 / 40%);
+  cursor: pointer;
+  transition: background-color 0.15s;
+}
+
+.box:hover {
+  background-color: #ffffff30;
+}
+
+.box.active {
+  background-color: #ffffff30;
+  border-bottom: 5px solid #282bc7;
+}
+
+/* ==================== 2) Piano ==================== */
+.article {
+  display: flex;
+  justify-content: center;
+}
+
+.piano {
+  position: absolute;
+  display: flex;
+  margin-top: calc(20vh - 2.45vw * 2.8);
+}
+
+/* 1.1) Default Keys */
+.white {
+  --width: 2.45vw;
+  width: var(--width);
+  height: calc(var(--width) * 4);
+  background-color: white;
+  margin: 0.155vw;
+  border-radius: 0.155vw;
+  box-shadow: 0 1px 2px 1px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.15s;
+}
+
+.black {
+  --width: 2vw;
+  width: var(--width);
+  height: calc(var(--width) * 3);
+  background-color: black;
+  margin-top: 0.155vw;
+  border-radius: 0.155vw;
+  margin-left: calc(var(--width) / -2);
+  margin-right: calc(var(--width) / -2);
+  z-index: 2;
+  transition: background-color 0.25s;
+}
+
+/* 1.2) Hovered/Active Keys */
+.white:hover {
+  background-color: #e6e6e6;
+}
+
+.white.active, .white.active:hover {
+  background-color: #5938C8;
+}
+
+.black:hover {
+  background-color: #595959;
+}
+
+.black.active, .black.active:hover {
+  background-color: #5938C8;
+  border: 1px solid #5938C8;
+  box-shadow: 0 1px 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+/* ==================== 3) Chord Buttons ==================== */  
+
+.sidebar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.chords {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.chordbutton {
+  border-radius: 999px;
+  box-shadow: 1px 2px 5px 1px rgb(0 0 0 / 20%);
+  box-sizing: border-box;
+  background-color: #d17eae;
+  color: black;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 200;
+  line-height: 1.5em;
+  margin: 0.35em 0.4em 0.35em 0.4em;
+  padding: 1vh 1vw;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  width: 5.5vw;
+  border: 0;
+}
+
+/* ==================== 4) Play Button ==================== */  
+.playbutton {
+  border: none;
+  border-radius: 50px;
+  background-color: #00c9b7;
+  width: 150px;
+  height: 50px;
+  position: relative;
+  color: white;
+  cursor: pointer;
+  font-size: 1em;
+  font-weight: 700;
+  letter-spacing: 0.5em;
+  box-shadow: 5px 5px 10px 1px rgb(0 0 0 / 20%);
+}
